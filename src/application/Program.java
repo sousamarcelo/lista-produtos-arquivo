@@ -28,7 +28,7 @@ public class Program {
 		
 		boolean sucess = new File(path.getParent() + "\\out").mkdir();
 		
-		String out = strPath + "\\out.csv";
+		String out = path.getParent() + "\\out" + "\\summary.csv";
 		
 		try (BufferedReader br = new BufferedReader(new FileReader(strPath))) {
 			
@@ -39,15 +39,27 @@ public class Program {
 				String name = list[0];
 				Double price = Double.parseDouble(list[1]);
 				Integer quantity = Integer.parseInt(list[2]);
-				product.add(new Product(name, price, quantity));
-				
-				System.out.println(line);
+				product.add(new Product(name, price, quantity));				
 				line = br.readLine();
 			}
 			
 		} catch (IOException e) {
 			System.out.println("Error: " + e.getMessage());
-		}		
+		}
+		
+
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(out))) {		
+		
+			for(Product p : product) {
+				bw.write(p.toString());
+				System.out.println(p.toString());
+				bw.newLine();
+		}
+		
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	
 		
 		sc.close();

@@ -43,7 +43,7 @@ public class Product {
 	
 	@Override
 	public String toString() {
-		return getName() + ", " + getPrice() + ", " + getQuantity();
+		return getName() + ", " + String.format("%.2f", total()) ;
 	}
 	
 
