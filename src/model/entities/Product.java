@@ -36,6 +36,10 @@ public class Product {
 		return quantity;
 	}
 	
+	public Double total() {
+		return getPrice() * getQuantity();
+	}
+	
 	
 	@Override
 	public String toString() {

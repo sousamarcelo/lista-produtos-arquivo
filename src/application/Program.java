@@ -1,8 +1,10 @@
 package application;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.Scanner;
 import model.entities.Product;
 
 public class Program {
-	
+
 	public static void main(String[] args) {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
@@ -23,6 +25,10 @@ public class Program {
 		String strPath = sc.nextLine();
 		
 		File path = new File(strPath);
+		
+		boolean sucess = new File(path.getParent() + "\\out").mkdir();
+		
+		String out = strPath + "\\out.csv";
 		
 		try (BufferedReader br = new BufferedReader(new FileReader(strPath))) {
 			
@@ -39,12 +45,10 @@ public class Program {
 				line = br.readLine();
 			}
 			
-			
 		} catch (IOException e) {
 			System.out.println("Error: " + e.getMessage());
-		}
-		
-		
+		}		
+	
 		
 		sc.close();
 	}
